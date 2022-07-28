@@ -7,6 +7,8 @@ const scoreboard = document.querySelector('#scoreboard');
 let animationItCounter = 0;
 
 hurdle.addEventListener('animationiteration', () => {
+  const value = parseInt(scoreboard.value);
+    scoreboard.value = value + 1;
   const currDuration = Number(
     window.getComputedStyle(hurdle).animationDuration.slice(0, -1)
   );
@@ -33,6 +35,14 @@ const controller = {
 
   changePositionX(direction) {
     const offset = direction === 'left' ? 5 : -5;
+    if (this.posX > 561) {
+      this.posX = 559;
+      return;
+    }
+    if (this.posX < 0) {
+      this.posX = 1;
+      return;
+    }
     player.style.right = `${this.posX + offset}px`;
     this.posX += offset;
   },
@@ -58,11 +68,9 @@ const loop = setInterval(() => {
   if (Math.abs(hurdlePosition - posX) < 50) {
     if (Number(window.getComputedStyle(player).bottom.slice(0, -2)) < 80) {
       hurdle.style.animation = '';
+      scoreboard.value = 0;
       window.location.reload(false);
     }
-  }
-  if (hurdlePosition - posX < 0) {
-    console.log(1);
   }
 }, 10);
 
