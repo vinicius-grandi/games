@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+  overflow-x: hidden;
+}
+
+.game-board {
+  width: 80%;
+  background-color: white;
+  position: relative;
+  height: 500px;
+  border: 1px solid #333;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+#player {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: rgb(219, 0, 0);
+  bottom: 0;
+}
+
+.square {
+  width: 80px;
+  animation: moving-square 2s infinite ease-in-out;
+  height: 80px;
+  position: absolute;
+  background-color: rgb(47, 47, 190);
+  bottom: 0;
+  z-index: 0;
+  right: 0;
+}
+
+@keyframes moving-square {
+  0% {
+    right: -80px;
+  }
+
+  100% {
+    right: 110%;
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0;
+  }
+
+  50% {
+    bottom: 30%
+  }
+
+  100% {
+    bottom: 0;
+  }
+}
